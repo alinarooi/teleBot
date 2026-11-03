@@ -1,0 +1,32 @@
+name: Run Telegram bot
+
+on:
+  workflow_dispatch:        # شروع دستی از تب Actions
+  schedule:
+    - cron: "0 */5 * * *"   # هر ۵ ساعت اجرای جدید (جایگزین اجرای قبلی)
+
+# فقط یک نمونه از ربات همزمان؛ اجرای جدید، قبلی رو کنسل می‌کنه
+concurrency:
+  group: telegram-bot
+  cancel-in-progress: true
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Start bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          ADMIN_ID: ${{ secrets.ADMIN_ID }}
+          STORAGE_CHANNEL: ${{ secrets.STORAGE_CHANNEL }}
+        run: python bot2.py
