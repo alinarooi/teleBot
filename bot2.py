@@ -20,7 +20,7 @@ ADMIN_ID = int(os.environ.get("ADMIN_ID", "0"))
 STORAGE_CHANNEL = int(os.environ.get("STORAGE_CHANNEL", "0"))
 
 # کانال‌هایی که کاربر باید عضو باشه (ربات باید توشون ادمین باشه)
-REQUIRED_CHANNELS = ["@channel1", "@channel2", "@channel3"]
+REQUIRED_CHANNELS = ["@eshgh_baza2", "@eshgh_baza3", "@eshgh_baza1"]
 
 # اگه True باشه کاربر نمی‌تونه ویدیو رو فوروارد/ذخیره کنه
 PROTECT_CONTENT = False
